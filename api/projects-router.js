@@ -8,7 +8,7 @@ router.use(express.json())
 
 // GET
 router.get('/', (req, res) => {
-   Projects.get(req.query)
+   Projects.get()
       .then(project => {
          res.status(200).json(project)
       })
@@ -60,11 +60,11 @@ router.get('/:id/actions', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
-   const { project_id, description, notes } = req.body
+   const { description, name } = req.body
 
-   !(project_id && description && notes) 
+   !(description || name) 
       ?  res.status(400).json({
-            errorMessage: 'Please provide a project_id, description, and notes for the action.'
+            errorMessage: 'Please provide a description and name for the project.'
          })
 
       :  Projects.insert(req.body)
@@ -74,7 +74,7 @@ router.post('/', (req, res) => {
             .catch(err => {
                console.log('error with POST:', err)
                res.status(500).json({
-                  error: 'There was an error while saving the action to the database'
+                  error: 'There was an error while saving the project to the database'
                })
             })
 })
@@ -82,24 +82,24 @@ router.post('/', (req, res) => {
 // PUT
 router.put('/:id', (req, res) => {
    const changes = req.body
-   const { project_id, description, notes } = req.body
+   const { description, name } = req.body
    const { id } = req.params
 
-   !(project_id && description && notes) 
+   !(description || name) 
       ?  res.status(400).json({
-            errorMessage: 'Please provide a project_id, description, and notes for the action.'
+            errorMessage: 'Please provide a description and name for the action.'
          })
 
       :  Projects.update(id, changes)
             .then(project => {
                project 
-                  ? res.status(200).json(action)
+                  ? res.status(200).json(project)
                   : res.status(404).json({ message: 'The post with the specified ID does not exist.' })
             })
             .catch(err => {
                console.log(err);
                res.status(500).json({
-                  error: 'The post information could not be modified.'
+                  error: 'The project information could not be modified.'
                });
             });
 })
