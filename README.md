@@ -38,15 +38,37 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [X] Mention two parts of Express that you learned about this week.
 
-- [ ] Describe Middleware?
+      First, we learned about server-side routing with express to map incoming requests to the appropriate request handler based on the URL and HTTP Method used. Second, we learned how to apply express middleware to add features to express.
 
-- [ ] Describe a Resource?
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [X] Describe Middleware?
 
-- [ ] How can we partition our application into sub-applications?
+      We can think of middleware as an array of functions that get executed in the order they are introduced into the server code. There are different types of middleware, which we roughly grouped into 
+
+      -	Built-in middleware
+      -	Third-party middleware
+      -	Custom Middleware
+
+      Most of the code we write in express, including route handlers, is middleware under the hood.
+
+
+- [X] Describe a Resource?
+
+      We can think of resources as the nouns our application cares about. Things like users, passwords, etc..
+
+
+- [X] What can the API return to help clients know if a request was successful?
+
+      The API can return a status code to help clients know if a request was successful.
+
+
+
+- [X] How can we partition our application into sub-applications?
+
+      Routes and routers allow us to partition our app into sub-applications by grouping certain endpoints together under a base URL.
+
 
 ## Minimum Viable Product
 
