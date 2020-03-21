@@ -7,7 +7,7 @@ router.use(express.json())
 
 // GET
 router.get('/', (req, res) => {
-   Actions.get(req.query)
+   Actions.get()
       .then(actions => {
          res.status(200).json(actions)
       })
@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
    const { project_id, description, notes } = req.body
 
-   !(project_id && description && notes) 
+   !(project_id || description || notes) 
       ?  res.status(400).json({
             errorMessage: 'Please provide a project_id, description, and notes for the action.'
          })
